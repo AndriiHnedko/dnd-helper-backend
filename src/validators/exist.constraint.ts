@@ -18,6 +18,24 @@ export class ExistConstraint implements ValidatorConstraintInterface {
 
     if (!value || !model) return false;
 
+    if (Array.isArray(value)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const rows = await this.prisma[model].findMany({
+        where: {
+          [property]: {
+            in: value,
+          },
+        },
+        select: {
+          [property]: true,
+        },
+      });
+
+      const existingValues = rows.map((row) => row[property]);
+      return value.every((v) => existingValues.includes(v));
+    }
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const record = await this.prisma[model].findFirst({

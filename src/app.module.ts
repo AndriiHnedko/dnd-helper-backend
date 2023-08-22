@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UniqueConstraint, ExistConstraint } from './validators';
+import { CharactersModule } from './characters/characters.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UniqueConstraint, ExistConstraint } from './validators';
     }),
     AuthModule,
     UsersModule,
+    CharactersModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistConstraint, UniqueConstraint],
