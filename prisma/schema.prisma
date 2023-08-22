@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int         @id @default(autoincrement())
+  username   String
+  email      String      @unique
+  password   String
+  isAdmin    Boolean     @default(false)
+  characters Character[]
+}
+
+model Character {
+  id         Int               @id @default(autoincrement())
+  name       String
+  userId     Int
+  user       User              @relation(fields: [userId], references: [id])
+  level      Int
+  spells     Spell[]
+  classId    Int
+  class      CharacterClass    @relation(fields: [classId], references: [id])
+  subClassId Int
+  subClass   CharacterSubClass @relation(fields: [subClassId], references: [id])
+}
+
+model Spell {
+  id                 Int              @id @default(autoincrement())
+  name               String
+  level              Int // Рівень навички (0-9)
+  school             String // Школа навички
+  castingTime        String // Час накладання
+  range              String // Відстань
+  components         String // Складові (V - Verbal, S - Somatic, M - Material)
+  materialComponents String? // Матеріальні компоненти (необов'язково)
+  duration           String // Тривалість
+  description        String
+  higherLevels       String?
+  characters         Character[]
+  classes            CharacterClass[]
+}
+
+model CharacterClass {
+  id          Int                 @id @default(autoincrement())
+  name        String
+  description String?
+  characters  Character[]
+  spells      Spell[]
+  subclasses  CharacterSubClass[]
+}
+
+model CharacterSubClass {
+  id          Int            @id @default(autoincrement())
+  name        String
+  description String?
+  classId     Int
+  class       CharacterClass @relation(fields: [classId], references: [id])
+  character   Character[]
+}
+
+model Component {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model Translate {
+  id        Int    @id @default(autoincrement())
+  key       String
+  translate String
+}
