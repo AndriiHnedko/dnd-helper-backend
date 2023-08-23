@@ -13,19 +13,20 @@ export class AuthService {
 
   async validateUser(email: string, pass: string) {
     const user = await this.usersService.findOneByEmail(email);
-    if (user && user.password === pass) {
-      return user;
+    if (!user) {
+      return null;
     }
-    return null;
+    const isValidPass = await this.comparePasswords(pass, user.password);
+    if (!isValidPass) {
+      return null;
+    }
+
+    return user;
   }
 
   async login(email: string, pass: string) {
     const user = await this.validateUser(email, pass);
     if (!user) {
-      throw new UnauthorizedException();
-    }
-    const isValidPass = await this.comparePasswords(pass, user.password);
-    if (!isValidPass) {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, username: user.username };
@@ -40,7 +41,7 @@ export class AuthService {
       ...data,
       password: hashedPass,
     });
-    return this.login(user.email, user.password);
+    return this.login(user.email, password);
   }
 
   async hashPassword(password: string) {
