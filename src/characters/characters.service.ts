@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
@@ -52,7 +52,8 @@ export class CharactersService {
     });
   }
 
-  remove(userId: number, id: number) {
+  async remove(userId: number, id: number) {
+    await this.findOneOrThrow(userId, id);
     return this.prisma.character.delete({ where: { userId, id } });
   }
 }
