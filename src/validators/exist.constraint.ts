@@ -48,7 +48,7 @@ export class ExistConstraint implements ValidatorConstraintInterface {
   }
 
   defaultMessage(args: ValidationArguments) {
-    return `${args.property} should exist in ${args.constraints[1]}`;
+    return `${args.property} should exist in ${args.constraints[0]}`;
   }
 }
 
