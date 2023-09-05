@@ -8,7 +8,7 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { ApiOkResponse } from '@nestjs/swagger/dist/decorators/api-response.decorator';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
@@ -27,6 +27,7 @@ export class CharacterClassController {
   @UseGuards(AdminGuard)
   @Post()
   @ApiOkResponse({ type: CharacterClassEntity })
+  @ApiOperation({ summary: 'Available only for admins' })
   async create(@Body() createCharacterClassDto: CreateCharacterClassDto) {
     const characterClass = await this.characterClassService.create(
       createCharacterClassDto,
@@ -51,6 +52,7 @@ export class CharacterClassController {
   @UseGuards(AdminGuard)
   @Patch(':id')
   @ApiOkResponse({ type: CharacterClassEntity })
+  @ApiOperation({ summary: 'Available only for admins' })
   async update(
     @Param('id') id: string,
     @Body() updateCharacterClassDto: UpdateCharacterClassDto,
@@ -64,6 +66,7 @@ export class CharacterClassController {
 
   @UseGuards(AdminGuard)
   @Delete(':id')
+  @ApiOperation({ summary: 'Available only for admins' })
   async remove(@Param('id') id: string) {
     return this.characterClassService.remove(+id);
   }
