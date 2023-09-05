@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { UniqueConstraint, ExistConstraint } from './validators';
 import { CharactersModule } from './characters/characters.module';
 import { CharacterClassModule } from './character-class/character-class.module';
+import { CharacterSubClassModule } from './character-sub-class/character-sub-class.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CharacterClassModule } from './character-class/character-class.module';
     UsersModule,
     CharactersModule,
     CharacterClassModule,
+    CharacterSubClassModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistConstraint, UniqueConstraint],

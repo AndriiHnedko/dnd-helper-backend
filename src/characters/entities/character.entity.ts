@@ -2,10 +2,16 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Character } from '@prisma/client';
 import { Exclude } from 'class-transformer';
 import { CharacterClassEntity } from '../../character-class/entities/character-class.entity';
+import { CharacterSubClassEntity } from '../../character-sub-class/entities/character-sub-class.entity';
 import { UserEntity } from '../../users/entities/user.entity';
 
 export class CharacterEntity implements Character {
-  constructor({ user, characterClass, ...data }: Partial<CharacterEntity>) {
+  constructor({
+    user,
+    characterClass,
+    characterSubClass,
+    ...data
+  }: Partial<CharacterEntity>) {
     Object.assign(this, data);
 
     if (user) {
@@ -13,6 +19,9 @@ export class CharacterEntity implements Character {
     }
     if (characterClass) {
       this.characterClass = new CharacterClassEntity(characterClass);
+    }
+    if (characterSubClass) {
+      this.characterClass = new CharacterSubClassEntity(characterSubClass);
     }
   }
 
@@ -30,7 +39,6 @@ export class CharacterEntity implements Character {
 
   @Exclude()
   subClassId: number;
-  //todo subclass
 
   @Exclude()
   userId: number;
@@ -40,4 +48,7 @@ export class CharacterEntity implements Character {
 
   @ApiProperty({ type: CharacterClassEntity })
   characterClass: CharacterClassEntity;
+
+  @ApiProperty({ type: CharacterSubClassEntity })
+  characterSubClass: CharacterSubClassEntity;
 }
