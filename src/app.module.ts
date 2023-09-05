@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UniqueConstraint, ExistConstraint } from './validators';
 import { CharactersModule } from './characters/characters.module';
+import { CharacterClassModule } from './character-class/character-class.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CharactersModule } from './characters/characters.module';
     AuthModule,
     UsersModule,
     CharactersModule,
+    CharacterClassModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistConstraint, UniqueConstraint],
