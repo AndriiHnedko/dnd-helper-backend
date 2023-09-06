@@ -10,6 +10,7 @@ import { UniqueConstraint, ExistConstraint } from './validators';
 import { CharactersModule } from './characters/characters.module';
 import { CharacterClassModule } from './character-class/character-class.module';
 import { CharacterSubClassModule } from './character-sub-class/character-sub-class.module';
+import { SpellModule } from './spell/spell.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { CharacterSubClassModule } from './character-sub-class/character-sub-cla
     CharactersModule,
     CharacterClassModule,
     CharacterSubClassModule,
+    SpellModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistConstraint, UniqueConstraint],
