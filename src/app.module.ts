@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { PrismaModule } from 'nestjs-prisma';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UniqueConstraint, ExistConstraint } from './validators';
@@ -35,7 +33,6 @@ import { TranslatesModule } from './translates/translates.module';
     SpellModule,
     TranslatesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, ExistConstraint, UniqueConstraint],
+  providers: [ExistConstraint, UniqueConstraint],
 })
 export class AppModule {}
