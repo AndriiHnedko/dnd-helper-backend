@@ -11,6 +11,7 @@ import { CharactersModule } from './characters/characters.module';
 import { CharacterClassModule } from './character-class/character-class.module';
 import { CharacterSubClassModule } from './character-sub-class/character-sub-class.module';
 import { SpellModule } from './spell/spell.module';
+import { TranslatesModule } from './translates/translates.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { SpellModule } from './spell/spell.module';
     CharacterClassModule,
     CharacterSubClassModule,
     SpellModule,
+    TranslatesModule,
   ],
   controllers: [AppController],
   providers: [AppService, ExistConstraint, UniqueConstraint],
