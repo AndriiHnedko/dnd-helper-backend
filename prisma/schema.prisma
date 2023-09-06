@@ -73,6 +73,7 @@ model Component {
 
 model Translate {
   id        Int    @id @default(autoincrement())
+  language  String
   key       String
   translate String
 }
