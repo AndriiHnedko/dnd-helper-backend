@@ -22,7 +22,11 @@ export class TranslatesController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Post()
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Available only for admins' })
+  @ApiOperation({
+    summary: 'Available only for admins',
+    description:
+      'This endpoint updates the translate if it exists or creates a new one',
+  })
   create(@Body() createTranslateDto: CreateTranslateDto) {
     return this.translatesService.upsertMany(createTranslateDto);
   }
