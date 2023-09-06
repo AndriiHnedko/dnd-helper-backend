@@ -4,6 +4,6 @@ import { SpellController } from './spell.controller';
 
 @Module({
   controllers: [SpellController],
-  providers: [SpellService]
+  providers: [SpellService],
 })
 export class SpellModule {}
