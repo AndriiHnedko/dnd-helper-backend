@@ -40,8 +40,8 @@ export class CharacterSubClassController {
   @Get()
   @ApiOkResponse({ type: CharacterSubClassEntity, isArray: true })
   async findAll() {
-    const characterSubClass = await this.characterSubClassService.findAll();
-    return characterSubClass.map((item) => new CharacterSubClassEntity(item));
+    const characterSubClasses = await this.characterSubClassService.findAll();
+    return characterSubClasses.map((item) => new CharacterSubClassEntity(item));
   }
 
   @Get(':id')

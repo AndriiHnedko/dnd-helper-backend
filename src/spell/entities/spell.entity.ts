@@ -46,6 +46,6 @@ export class SpellEntity implements Spell {
   @ApiProperty({ nullable: true })
   higherLevels: string;
 
-  @ApiProperty({ type: CharacterClassEntity, isArray: true })
-  characterClasses: CharacterClassEntity[];
+  @ApiProperty({ type: CharacterClassEntity, isArray: true, nullable: true })
+  characterClasses?: CharacterClassEntity[];
 }
