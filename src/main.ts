@@ -10,8 +10,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Prisma chat API')
-    .setDescription('The prisma chat API documentation')
+    .setTitle('D&D helper API')
+    .setDescription('The D&D helper API documentation')
     .setVersion('0.1')
     .addBearerAuth({
       type: 'http',
