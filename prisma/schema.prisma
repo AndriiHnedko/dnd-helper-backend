@@ -33,19 +33,19 @@ model Character {
 }
 
 model Spell {
-  id                 Int              @id @default(autoincrement())
-  name               String
-  level              Int // Рівень навички (0-9)
-  school             String // Школа навички
-  castingTime        String // Час накладання
-  range              String // Відстань
-  components         String // Складові (V - Verbal, S - Somatic, M - Material)
-  materialComponents String? // Матеріальні компоненти (необов'язково)
-  duration           String // Тривалість
-  description        String
-  higherLevels       String?
-  characters         Character[]
-  classes            CharacterClass[]
+  id                      Int              @id @default(autoincrement())
+  name                    String
+  level                   Int // Рівень навички (0-9)
+  school                  String // Школа навички
+  castingTime             String // Час накладання
+  range                   String // Відстань
+  components              String // Складові (V - Verbal, S - Somatic, M - Material)
+  materialComponents      String? // Матеріальні компоненти (необов'язково)
+  duration                String // Тривалість
+  description             String
+  higherLevelsDescription String?
+  characters              Character[]
+  classes                 CharacterClass[]
 }
 
 model CharacterClass {

@@ -60,7 +60,7 @@ export class CreateSpellDto {
   @IsOptional()
   @IsString()
   @ApiProperty()
-  higherLevels?: string;
+  higherLevelsDescription?: string;
 
   @IsNotEmpty()
   @IsNumber({}, { each: true })
